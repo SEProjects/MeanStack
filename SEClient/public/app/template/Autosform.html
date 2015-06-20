@@ -1,0 +1,14 @@
+<div class="control-group">
+    <label class="control-label" for="Beschreibung">Beschreibung</label>
+    <input id="Beschreibung" name="Beschreibung" type="text" placeholder="z.B. VW" class="input-xlarge" ng-model="auto.bez">
+</div>
+<div class="control-group">
+    <label class="control-label" for="Kraftstoff">Kraftstoff</label>
+    <select ng-model="auto.aa">
+        <option ng-repeat="a in aa" ng-selected="auto.aa==a.id" value="{{a.id}}">{{a.name}}</option>
+    </select>
+
+</div>
+<div class="control-group">
+    <input type="submit" class="btn btn-primary" value="Speichern" />
+</div>

@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col-md-2">
+        <table class="table table-hover table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Beschreibung</th>
+                <th>Autoart</th>
+                <th>Marke</th>
+                <th>Kraftstoff</th>
+                <th>Edit</th>
+                <th>Position</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="Auto in Autos">
+                <th>{{Auto.item[0].$value;}}</th>
+                <th>{{Auto.item[1].$value;}}</th>
+                <th>{{Auto.item[2].$value;}}</th>
+                <th>{{Auto.item[3].$value;}}</th>
+                <th>{{Auto.item[4].$value;}}</th>
+
+
+                <th><a href="#/autos/{{Auto.item[0].$value}}" class="btn btn-default">bearbeiten</a></th>
+                <th><a href="#/autolocation/{{Auto.item[0].$value}}" class="btn btn-default">anzeigen</a></th>
+            </tbody>
+        </table> <div>
+        <a href="#/autos/new" class="btn btn-default" >Neues Auto anlegen</a></div>
+       <div style="margin-top: 10px"> <a href="#/autolocation/" class="btn btn-default" >Alle Autopositionen anzeigen</a></div>
+
+    </div>
+</div>

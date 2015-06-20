@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-md-2">
+<table class="table table-hover table-striped">
+    <thead>
+    <tr>
+        <th>Email</th>
+        <th>Vorname</th>
+        <th>Nachname</th>
+        <th>Straße</th>
+        <th>PLZ</th>
+        <th>ORT</th>
+        <th>Edit</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="Kunde in Kunden">
+        <th>{{Kunde.item[0].$value;}}</th>
+        <th>{{Kunde.item[1].$value;}}</th>
+        <th>{{Kunde.item[2].$value;}}</th>
+        <th>{{Kunde.item[3].$value;}}</th>
+        <th>{{Kunde.item[4].$value;}}</th>
+        <th>{{Kunde.item[5].$value;}}</th>
+
+        <th><a href="#/kunden/{{Kunde.item[0].$value}}" class="btn btn-default">bearbeiten</a></th>
+    </tbody>
+    </table>
+    </div>
+</div>
