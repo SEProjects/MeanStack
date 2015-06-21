@@ -24,7 +24,7 @@ app.controller("MarkenCreateController",function($scope, $http, $location){
         //Logout button setzen
         $scope.s = true;
         $scope.createMarke = function () {
-            $http.post("http://localhost:3000/marken/" + list['Session'] + "/new", $scope.Marke)
+            $http.post("http://10.60.70.15:3000/marken/" + list['Session'] + "/new", $scope.Marke)
                 .success(function (response) {
                     //beim Fehler wird eine Message ausgeben
                     if(typeof  response.message != 'undefined'){

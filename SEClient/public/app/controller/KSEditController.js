@@ -14,7 +14,7 @@ app.controller("KSEditController",function($scope, $http, $location,$routeParams
         var parts = cookie.split('=');
         list[parts.shift().trim()] = decodeURI(parts.join('='));
     });
-    $http.get("http://localhost:3000/ks/" + list['Session'] + "/" + id).success(function(response){
+    $http.get("http://10.60.70.15:3000/ks/" + list['Session'] + "/" + id).success(function(response){
         if(typeof  response.message != 'undefined'){
             alert(response.message);
         }
@@ -37,7 +37,7 @@ app.controller("KSEditController",function($scope, $http, $location,$routeParams
         //Logout button setzen
         $scope.s = true;
         $scope.saveKS = function () {
-            $http.put("http://localhost:3000/ks/" + list['Session'] + "/" + id, $scope.KS)
+            $http.put("http://10.60.70.15:3000/ks/" + list['Session'] + "/" + id, $scope.KS)
                 .success(function (response) {
                     //beim Fehler wird eine Message ausgeben
                     if(typeof  response.message != 'undefined'){

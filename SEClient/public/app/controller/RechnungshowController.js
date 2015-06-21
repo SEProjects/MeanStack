@@ -27,7 +27,7 @@ app.controller("RechnungshowController", function($scope,$http,$location,$routeP
     else {
         //Logout button setzen
         $scope.s = true;
-        $http.get("http://localhost:3000/rechnung/" + list['Session'] + "/" + id).success(function (response) {
+        $http.get("http://10.60.70.15:3000/rechnung/" + list['Session'] + "/" + id).success(function (response) {
             console.info(response);
             //beim Fehler wird eine Message ausgeben
             if(typeof  response.message != 'undefined'){

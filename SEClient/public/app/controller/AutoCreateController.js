@@ -25,7 +25,7 @@ app.controller("AutoCreateController", function($scope,$http,$location,$routePar
     else {
         //Logout button setzen
         $scope.s = true;
-        $http.get("http://localhost:3000/aa/" + list['Session']).success(function (response) {
+        $http.get("http://10.60.70.15:3000/aa/" + list['Session']).success(function (response) {
             //beim Fehler wird eine Message ausgeben
             if(typeof  response.message != 'undefined'){
                 alert(response.message);
@@ -48,7 +48,7 @@ app.controller("AutoCreateController", function($scope,$http,$location,$routePar
         })
 
         $scope.createAuto = function () {
-            $http.post("http://localhost:3000/autos/" + list['Session'] + "/new", $scope.auto)
+            $http.post("http://10.60.70.15:3000/autos/" + list['Session'] + "/new", $scope.auto)
                 .success(function (response) {
                     //beim Fehler wird eine Message ausgeben
                     if(typeof  response.message != 'undefined'){

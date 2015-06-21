@@ -21,7 +21,7 @@ app.controller('AutoArtImageUploadCreateController', ['$scope', 'Upload','$route
     else {
         //Logout button setzen
            $scope.s = true;
-        $http.get("http://localhost:3000/aa/pic/" + list['Session'] + "/" + id).success(function (response) {
+        $http.get("http://10.60.70.15:3000/aa/pic/" + list['Session'] + "/" + id).success(function (response) {
             //beim Fehler wird eine Message ausgeben
             if(typeof  response.message != 'undefined'){
                 alert(response.message);
@@ -46,7 +46,7 @@ app.controller('AutoArtImageUploadCreateController', ['$scope', 'Upload','$route
                 for (var i = 0; i < files.length; i++) {
                     var file = files[i];
                     Upload.upload({
-                        url: 'http://localhost:3000/aa/pic/' + list['Session'] + "/" + id,
+                        url: 'http://10.60.70.15:3000/aa/pic/' + list['Session'] + "/" + id,
 
                         file: file
                     }).success(function (response) {

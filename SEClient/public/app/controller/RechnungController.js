@@ -24,7 +24,7 @@ app.controller("RechnungsController", function($scope,$http,$location,$window){
     else {
         //Logout button setzen
         $scope.s = true;
-        $http.get("http://localhost:3000/rechnung/" + list['Session']).success(function (response) {
+        $http.get("http://10.60.70.15:3000/rechnung/" + list['Session']).success(function (response) {
             console.info(response);
             if(typeof  response.message != 'undefined'){
                 alert(response.message);
@@ -44,7 +44,7 @@ app.controller("RechnungsController", function($scope,$http,$location,$window){
             console.info(err);
         });
         $scope.createAllRechnungen = function () {
-            $http.post("http://localhost:3000/rechnung/" + list['Session']).success(function (response) {
+            $http.post("http://10.60.70.15:3000/rechnung/" + list['Session']).success(function (response) {
                 console.info(response);
                 //beim Fehler wird eine Message ausgeben
                 if(typeof  response.message != 'undefined'){
@@ -66,7 +66,7 @@ app.controller("RechnungsController", function($scope,$http,$location,$window){
             });
         }
         $scope.Rechnungenbestaetigen = function (id) {
-            $http.put("http://localhost:3000/rechnung/zahlung/" + list['Session'] + "/" + id).success(function (response) {
+            $http.put("http://10.60.70.15:3000/rechnung/zahlung/" + list['Session'] + "/" + id).success(function (response) {
                 console.info(response);
                 if(typeof  response.message != 'undefined'){
                     alert(response.message);

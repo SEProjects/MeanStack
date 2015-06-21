@@ -24,7 +24,7 @@ app.controller("KSCreateController",function($scope, $http, $location){
         //Logout button setzen
         $scope.s = true;
         $scope.createKS = function () {
-            $http.post("http://localhost:3000/ks/" + list['Session'] + "/new", $scope.KS)
+            $http.post("http://10.60.70.15:3000/ks/" + list['Session'] + "/new", $scope.KS)
                 .success(function (response) {
                     //beim Fehler wird eine Message ausgeben
                     if(typeof  response.message != 'undefined'){

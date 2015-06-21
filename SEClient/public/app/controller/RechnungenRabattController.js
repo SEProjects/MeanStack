@@ -28,7 +28,7 @@ app.controller("RechnungsRabattController", function($scope,$http,$location, $ro
     else {
         //Logout button setzen
         $scope.s = true;
-        $http.get("http://localhost:3000/rechnung/rabatt/" + list['Session'] + "/" + id).success(function (response) {
+        $http.get("http://10.60.70.15:3000/rechnung/rabatt/" + list['Session'] + "/" + id).success(function (response) {
             //beim Fehler wird eine Message ausgeben
             if(typeof  response.message != 'undefined'){
                 alert(response.message);
@@ -49,7 +49,7 @@ app.controller("RechnungsRabattController", function($scope,$http,$location, $ro
         });
 
         $scope.SaveRabatt = function () {
-            $http.put("http://localhost:3000/rechnung/rabatt/" + list['Session'] + "/" + id, $scope.Rechnung).success(function (response) {
+            $http.put("http://10.60.70.15:3000/rechnung/rabatt/" + list['Session'] + "/" + id, $scope.Rechnung).success(function (response) {
                 console.info(response);
                 //beim Fehler wird eine Message ausgeben
                 if(typeof  response.message != 'undefined'){

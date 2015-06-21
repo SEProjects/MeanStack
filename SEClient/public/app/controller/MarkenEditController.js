@@ -24,7 +24,7 @@ app.controller("MarkenEditController",function($scope, $http, $location,$routePa
     else {
         //Logout button setzen
         $scope.s = true;
-        $http.get("http://localhost:3000/marken/" + list['Session'] + "/" + id).success(function(response){
+        $http.get("http://10.60.70.15:3000/marken/" + list['Session'] + "/" + id).success(function(response){
             if(typeof  response.message != 'undefined'){
                 alert(response.message);
             }
@@ -38,7 +38,7 @@ app.controller("MarkenEditController",function($scope, $http, $location,$routePa
             $scope.Marke = response;
         });
         $scope.saveMarke = function () {
-            $http.put("http://localhost:3000/marken/" + list['Session'] + "/" + id, $scope.Marke)
+            $http.put("http://10.60.70.15:3000/marken/" + list['Session'] + "/" + id, $scope.Marke)
                 .success(function (response) {
                     //beim Fehler wird eine Message ausgeben
                     if(typeof  response.message != 'undefined'){

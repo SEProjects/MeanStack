@@ -30,7 +30,7 @@ app.controller("UserController", function($scope,$http,$location){
         $scope.s = true;
 
 
-        $http.get("http://localhost:3000/users/" + list['Session']).success(function (response) {
+        $http.get("http://10.60.70.15:3000/users/" + list['Session']).success(function (response) {
             console.info(response.returnCode);
             //beim Fehler wird eine Message ausgeben
             if(typeof  response.message != 'undefined'){

@@ -21,7 +21,7 @@ app.controller("SessionController", function($scope,$http,$location,  $window){
     $scope.createSession = function() {
 
 
-        $http.post("http://localhost:3000/session", $scope.login).success(function (response) {
+        $http.post("http://10.60.70.15:3000/session", $scope.login).success(function (response) {
 
             console.info(response);
            if(response.returnCode == '0') {

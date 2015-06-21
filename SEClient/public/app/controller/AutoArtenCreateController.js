@@ -23,7 +23,7 @@ app.controller("AutoArtenCreateController", function($scope,$http,$location,$rou
     else {
         //Logout button setzen
         $scope.s = true;
-        $http.get("http://localhost:3000/marken/" + list['Session']).success(function (response) {
+        $http.get("http://10.60.70.15:3000/marken/" + list['Session']).success(function (response) {
             //beim Fehler wird eine Message ausgeben
             if(typeof  response.message != 'undefined'){
                 alert(response.message);
@@ -44,7 +44,7 @@ app.controller("AutoArtenCreateController", function($scope,$http,$location,$rou
             console.info(marken);
 
         })
-        $http.get("http://localhost:3000/ks/" + list['Session']).success(function (response) {
+        $http.get("http://10.60.70.15:3000/ks/" + list['Session']).success(function (response) {
             //beim Fehler wird eine Message ausgeben
             if(typeof  response.message != 'undefined'){
                 alert(response.message);
@@ -71,7 +71,7 @@ app.controller("AutoArtenCreateController", function($scope,$http,$location,$rou
 
         $scope.createAA = function () {
 
-            $http.post("http://localhost:3000/aa/" + list['Session'] + "/new", $scope.aa).success(function (response) {
+            $http.post("http://10.60.70.15:3000/aa/" + list['Session'] + "/new", $scope.aa).success(function (response) {
                 //beim Fehler wird eine Message ausgeben
                 if(typeof  response.message != 'undefined'){
                     alert(response.message);
