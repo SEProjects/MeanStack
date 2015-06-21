@@ -20,7 +20,8 @@ app.config(function($routeProvider) {
 
     $routeProvider
         .when("/",  {
-            templateUrl:"/app/template/index.html"
+            templateUrl:"/app/template/index.html",
+            controller: "WelcomeController"
 
         })
         .when("/session/new",{
@@ -38,11 +39,7 @@ app.config(function($routeProvider) {
                 controller: "UserController"
 
             })
-        .when("/kunden/:id",{
-            templateUrl:"/app/template/kundeedit.html",
-            controller: "UserEditController"
 
-        })
         .when("/autos",{
             templateUrl:"/app/template/Autos.html",
             controller: "AutoController"
@@ -151,13 +148,12 @@ app.config(function($routeProvider) {
 
 
         })
-
-        .when("/kunde/hash/:hash",{
-            templateUrl:"/app/template/Rechnung.html",
-            controller: "KundenHashController"
-
+        .when("/kunden/:id",{
+            templateUrl:"/app/template/KundeEdit.html",
+            controller: "KundeEditController"
 
         })
+
 
 
 

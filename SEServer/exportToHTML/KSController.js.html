@@ -1,0 +1,132 @@
+<html>
+<head>
+<title>KSController.js</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(128,128,128); font-style: italic; }
+.s1 { }
+.s2 { color: rgb(0,0,128); font-weight: bold; }
+.s3 { color: rgb(0,128,0); font-weight: bold; }
+.s4 { color: rgb(128,128,128); font-weight: bold; font-style: italic; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+KSController.js</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0">/** 
+ * Created by kevin on 07.06.15. 
+ */</span><span class="s1"> 
+ 
+</span><span class="s2">var </span><span class="s1">soap = require(</span><span class="s3">'soap'</span><span class="s1">); 
+ 
+</span><span class="s0">/** 
+ * Holt alle Kraftstoffarten vom Server 
+ * </span><span class="s4">@params </span><span class="s0">Sessionid Sessionid des Users 
+ */</span><span class="s1"> 
+exports.get= </span><span class="s2">function</span><span class="s1">(req, res){ 
+ 
+    </span><span class="s2">var </span><span class="s1">args = {Sessionid:   req.params.sessionId}; 
+    soap.createClient(global.urlforSoap, </span><span class="s2">function </span><span class="s1">(err, client) { 
+        </span><span class="s0">//client.test(args, function(err, result) {</span><span class="s1"> 
+ 
+        client. getAllKS(args, </span><span class="s2">function </span><span class="s1">(err, result) { 
+ 
+ 
+            res.jsonp(result.return); 
+ 
+ 
+        }) 
+ 
+ 
+ 
+ 
+        </span><span class="s0">//});</span><span class="s1"> 
+    }, global.urlforSoap2); 
+ 
+} 
+</span><span class="s0">/** 
+ * Holt die Selektierte KraftstoffArt vom Server 
+ * </span><span class="s4">@params </span><span class="s0">Sessionid Sessionid des Users 
+ * </span><span class="s4">@params </span><span class="s0">KSID 
+ */</span><span class="s1"> 
+ 
+exports.getKS= </span><span class="s2">function</span><span class="s1">(req, res){ 
+ 
+    </span><span class="s2">var </span><span class="s1">args = {Sessionid: req.params.sessionId, KSId:req.params.KSId}; 
+    soap.createClient(global.urlforSoap, </span><span class="s2">function </span><span class="s1">(err, client) { 
+        </span><span class="s0">//client.test(args, function(err, result) {</span><span class="s1"> 
+ 
+        client.getKS(args, </span><span class="s2">function </span><span class="s1">(err, result) { 
+ 
+ 
+            res.jsonp(result.return); 
+ 
+ 
+        }) 
+ 
+ 
+ 
+ 
+        </span><span class="s0">//});</span><span class="s1"> 
+    }, global.urlforSoap2); 
+ 
+} 
+</span><span class="s0">/** 
+ * Speichert die KraftstoffArt auf dem Server 
+ * </span><span class="s4">@params </span><span class="s0">Sessionid Sessionid des Users 
+ * </span><span class="s4">@params </span><span class="s0">KSID Kraftstoffid 
+ * </span><span class="s4">@body </span><span class="s0">bezeichnung 
+ */</span><span class="s1"> 
+exports.saveKS= </span><span class="s2">function</span><span class="s1">(req, res){ 
+ 
+    </span><span class="s2">var </span><span class="s1">args = {Sessionid: req.params.sessionId,KSId: req.params.KSId,KSbezeichnung: req.body.bezeichnung}; 
+    soap.createClient(global.urlforSoap, </span><span class="s2">function </span><span class="s1">(err, client) { 
+        </span><span class="s0">//client.test(args, function(err, result) {</span><span class="s1"> 
+        console.info(req.body.bezeichnung); 
+        client.saveKS(args, </span><span class="s2">function </span><span class="s1">(err, result) { 
+ 
+ 
+            res.jsonp(result.return); 
+ 
+ 
+        }) 
+ 
+ 
+ 
+        </span><span class="s0">//});</span><span class="s1"> 
+    }, global.urlforSoap2); 
+ 
+} 
+ 
+exports.newKS= </span><span class="s2">function</span><span class="s1">(req, res){ 
+ 
+    </span><span class="s2">var </span><span class="s1">args = {Sessionid: req.params.sessionId,KS: req.body.bezeichnung}; 
+    soap.createClient(global.urlforSoap, </span><span class="s2">function </span><span class="s1">(err, client) { 
+        </span><span class="s0">//client.test(args, function(err, result) {</span><span class="s1"> 
+ 
+        client.createKS(args, </span><span class="s2">function </span><span class="s1">(err, result) { 
+ 
+ 
+            res.jsonp(result.return); 
+ 
+ 
+        }) 
+ 
+ 
+ 
+ 
+        </span><span class="s0">//});</span><span class="s1"> 
+    }, global.urlforSoap2); 
+ 
+} 
+ 
+ 
+</span></pre>
+</body>
+</html>

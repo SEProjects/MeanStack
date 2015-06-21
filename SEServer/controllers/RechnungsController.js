@@ -3,8 +3,10 @@
  */
 
 var soap = require('soap');
-
-var url = 'http://192.168.1.109:8080/Autovermietung_OnlineSystem/OnlineAdminIntegration?wsdl';
+/**
+ * Liefert alle Rechnungen
+ * @params Sessionid Sessionid des Users
+ */
 exports.get= function(req, res){
 
     var args = {Sessionid:   req.params.sessionId};
@@ -26,7 +28,11 @@ exports.get= function(req, res){
     }, global.urlforSoap2);
 
 }
-
+/**
+ *Liefert die ausgewählte Rechnung auf dem Server
+ * @params Sessionid Sessionid des Users
+ * @params Rechnungsid
+ */
 exports.getRechnung= function(req, res){
 
     var args = {Sessionid: req.params.sessionId, Rechnungsid:req.params.Rechnungsid};
@@ -48,11 +54,10 @@ exports.getRechnung= function(req, res){
     }, global.urlforSoap2);
 
 }
-
-
+//nicht benutzt
 exports.newRechnung= function(req, res){
 
-    var args = {Sessionid: req.params.sessionId,Markenname: req.body.markenname};
+    var args = {Sessionid: req.params.sessionId};
     soap.createClient(global.urlforSoap, function (err, client) {
         //client.test(args, function(err, result) {
 
@@ -71,6 +76,10 @@ exports.newRechnung= function(req, res){
     }, global.urlforSoap2);
 
 }
+/**
+ * Erstellt alle Rechnungen auf dem Server
+ * @params Sessionid Sessionid des Users
+ */
 exports.createAllRechnungen= function(req, res){
 
     var args = {Sessionid: req.params.sessionId};
@@ -92,6 +101,11 @@ exports.createAllRechnungen= function(req, res){
     }, global.urlforSoap2);
 
 }
+/**
+ * Bestätigt die Rechnung als Bezahlt auf dem Server
+ * @params Sessionid Sessionid des Users
+ * @params Rechnungsid
+ */
 exports.Rechnungenbestaetigen= function(req, res){
 
     var args = {Sessionid: req.params.sessionId,Rechnungsid: req.params.Rid};
@@ -113,6 +127,12 @@ exports.Rechnungenbestaetigen= function(req, res){
     }, global.urlforSoap2);
 
 }
+/**
+ * Liefert den Rabatt der Rechnung auf dem Server
+ * @params Sessionid Sessionid des Users
+ * @params Rechnungsid
+ *
+ */
 exports.getRechnungsRabatt= function(req, res){
 
     var args = {Sessionid: req.params.sessionId, Rechnungsid: req.params.Rid};
@@ -134,6 +154,12 @@ exports.getRechnungsRabatt= function(req, res){
     }, global.urlforSoap2);
 
 }
+/**
+ * Bestätigt die Rechnung als Bezahlt auf dem Server
+ * @params Sessionid Sessionid des Users
+ * @params Rechnungsid
+ * @body rabatt neuer Rabatt
+ */
 exports.saveRechnungsRabatt= function(req, res){
 
     var args = {Sessionid: req.params.sessionId, Rechnungsid: req.params.Rid,Rabatt: req.body.rabatt};

@@ -1,0 +1,49 @@
+<form class="form-horizontal" ng-submit="saveKunde()">
+    <fieldset>
+        <legend>User bearbeiten</legend>
+
+<div class="control-group">
+    <label class="control-label" for="textinput">Email</label>
+    <div class="controls">
+        <input id="textinput" name="textinput" type="text" class="input-xlarge" ng-model="Kunde.email">
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="kvorname">Vorname</label>
+    <div class="controls">
+        <input id="kvorname" name="kvorname" type="text" class="input-xlarge" ng-model="Kunde.kvorname">
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="knachname">Nachname</label>
+    <div class="controls">
+        <input id="knachname" name="knachname" type="text" class="input-xlarge" ng-model="Kunde.knachname">
+    </div>
+</div>
+        <div class="control-group">
+            <label class="control-label" for="Straße">Strasse</label>
+            <div class="controls">
+                <input id="Straße" name="Straße" type="text" class="input-xlarge" ng-model="Kunde.strasse">
+            </div>
+        </div>
+<div class="control-group">
+    <label class="control-label" for="fsnummer">FSnummer</label>
+    <div class="controls">
+        <input id="fsnummer" name="fsnummer" type="text" class="input-xlarge" ng-model="Kunde.fsnummer">
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="saf">Aktive</label>
+    <div class="controls">
+        <input id="saf" name="saf" type="checkbox" class="input-xlarge" ng-model="Kunde.aktive">
+    </div>
+</div>
+
+<div class="control-group">
+    <input type="submit" class="btn btn-primary" value="Speichern" />
+</div>
+
+    </fieldset>
+
+
+</form>

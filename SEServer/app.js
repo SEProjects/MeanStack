@@ -11,20 +11,25 @@ var sessions = require('./routes/sessions');
 var auto= require('./routes/autos');
 var aa= require('./routes/autoarten');
 var rechnung= require('./routes/rechungen');
+var schaden = require('./routes/schaeden')
+var dreck = require('./routes/dreck')
 var app = express();
 var cors = require('cors');
 
 var multer  = require('multer')
 
 
+//Aktiviert Uploads
 app.use(multer({ dest: './uploads/'}));
 
-
+//Aktivert CrosssideScripting
 app.use(cors());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+//setze Globale Variablen für die Soapaufrufe damit sie Später hier geändert werden können
 global.urlforSoap = 'http://192.168.1.109:8080/Autovermietung_OnlineSystem/OnlineAdminIntegration?wsdl';
 global.urlforSoap2 = 'http://192.168.1.109:8080/Autovermietung_OnlineSystem/OnlineAdminIntegration'
 
@@ -36,6 +41,9 @@ app.use('/marken',marken);
 app.use('/ks',ks);
 app.use('/aa',aa);
 app.use('/rechnung',rechnung);
+app.use('/schaden',schaden);
+app.use('/dreck',dreck);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -4,7 +4,10 @@
 
 var soap = require('soap');
 
-var url = 'http://192.168.1.109:8080/Autovermietung_OnlineSystem/OnlineAdminIntegration?wsdl';
+/**
+ * Holt alle Kraftstoffarten vom Server
+ * @params Sessionid Sessionid des Users
+ */
 exports.get= function(req, res){
 
     var args = {Sessionid:   req.params.sessionId};
@@ -26,6 +29,11 @@ exports.get= function(req, res){
     }, global.urlforSoap2);
 
 }
+/**
+ * Holt die Selektierte KraftstoffArt vom Server
+ * @params Sessionid Sessionid des Users
+ * @params KSID
+ */
 
 exports.getKS= function(req, res){
 
@@ -48,7 +56,12 @@ exports.getKS= function(req, res){
     }, global.urlforSoap2);
 
 }
-
+/**
+ * Speichert die KraftstoffArt auf dem Server
+ * @params Sessionid Sessionid des Users
+ * @params KSID Kraftstoffid
+ * @body bezeichnung
+ */
 exports.saveKS= function(req, res){
 
     var args = {Sessionid: req.params.sessionId,KSId: req.params.KSId,KSbezeichnung: req.body.bezeichnung};

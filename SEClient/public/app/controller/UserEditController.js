@@ -4,6 +4,7 @@
 var app = angular.module("Autovermietung");
 
 app.controller("UserEditController",function($scope,$http,$location,$routeParams){
+    //prüft ob User eingelogt ist:
     $scope.Kunde = {};
     var id = $routeParams.id;
 
@@ -21,12 +22,14 @@ app.controller("UserEditController",function($scope,$http,$location,$routeParams
 
     }
     else {
+        console.info("!");
+        //Logout button setzen
         $scope.s = true;
         $http.get("http://localhost:3000/users/" + list['Session'] + "/" + id).success(function (response) {
             if(typeof  response.message != 'undefined'){
                 alert(response.message);
             }
-
+            //wenn Session angelaufen oder nicht vorhanden zurück zum Login
             if (response.returnCode == '10') {
                 document.cookie = 'Session = 0;expires=Thu, 01 Jan 1970 00:00:01 GMT';
                 $location.url("/session/new");
@@ -34,28 +37,29 @@ app.controller("UserEditController",function($scope,$http,$location,$routeParams
             $scope.Kunde = response;
         })
 
-        $scope.saveKunde = function () {
-            console.info("!")
-            $http.put("http://localhost:3000/users/" + list['Session'] + "/" + $scope.Kunde.email, $scope.Kunde).success(function (response) {
-                if(typeof  response.message != 'undefined'){
-                    alert(response.message);
-                }
 
-                if (response.returnCode == '10') {
-                    document.cookie = 'Session = 0;expires=Thu, 01 Jan 1970 00:00:01 GMT';
-                    $location.url("/session/new");
-                }
-                $location.url("/kunden");
-
-
-            })
-
-
-        };
 
 
     }
+    $scope.save = function () {
 
+        $http.put("http://localhost:3000/users/" + list['Session'] + "/" + $scope.Kunde.email, $scope.Kunde).success(function (response) {
+            //beim Fehler wird eine Message ausgeben
+            if(typeof  response.message != 'undefined'){
+                alert(response.message);
+            }
+            //wenn Session angelaufen oder nicht vorhanden zurück zum Login
+            if (response.returnCode == '10') {
+                document.cookie = 'Session = 0;expires=Thu, 01 Jan 1970 00:00:01 GMT';
+                $location.url("/session/new");
+            }
+            $location.url("/kunden");
+
+
+        });
+
+
+    };
 
 });
 

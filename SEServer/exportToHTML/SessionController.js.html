@@ -1,0 +1,75 @@
+<html>
+<head>
+<title>SessionController.js</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(128,128,128); font-style: italic; }
+.s1 { }
+.s2 { color: rgb(0,0,128); font-weight: bold; }
+.s3 { color: rgb(0,128,0); font-weight: bold; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+SessionController.js</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0">/** 
+ * Created by kevin on 04.06.15. 
+ */</span><span class="s1"> 
+</span><span class="s2">var </span><span class="s1">soap = require(</span><span class="s3">'soap'</span><span class="s1">); 
+</span><span class="s2">var </span><span class="s1">app = require(</span><span class="s3">'../app'</span><span class="s1">); 
+ 
+ 
+</span><span class="s2">var </span><span class="s1">url = </span><span class="s3">'http://192.168.1.109:8080/Autovermietung_OnlineSystem/OnlineAdminIntegration?wsdl'</span><span class="s1">; 
+exports.post = </span><span class="s2">function</span><span class="s1">(req, res){ 
+         </span><span class="s2">var </span><span class="s1">args = {email: req.body.email, password: req.body.password}; 
+        soap.createClient(global.urlforSoap, </span><span class="s2">function </span><span class="s1">(err, client) { 
+            </span><span class="s0">//client.test(args, function(err, result) {</span><span class="s1"> 
+            console.info(req.body); 
+            client.Adminlogin(args, </span><span class="s2">function </span><span class="s1">(err, result) { 
+ 
+ 
+                res.jsonp(result.return); 
+ 
+ 
+            }) 
+ 
+ 
+ 
+ 
+            </span><span class="s0">//});</span><span class="s1"> 
+        }, global.urlforSoap2); 
+ 
+    } 
+exports.show = </span><span class="s2">function</span><span class="s1">(req, res){ 
+    req.params.sessionId 
+    </span><span class="s2">var </span><span class="s1">args = {Sessionid:   req.params.sessionId}; 
+    soap.createClient(global.urlforSoap, </span><span class="s2">function </span><span class="s1">(err, client) { 
+        </span><span class="s0">//client.test(args, function(err, result) {</span><span class="s1"> 
+        console.info(req.body); 
+        client.test(args, </span><span class="s2">function </span><span class="s1">(err, result) { 
+ 
+ 
+            res.jsonp(result.return); 
+ 
+ 
+        }) 
+ 
+ 
+ 
+ 
+        </span><span class="s0">//});</span><span class="s1"> 
+    }, global.urlforSoap2); 
+ 
+ 
+} 
+ 
+ 
+</span></pre>
+</body>
+</html>

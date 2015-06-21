@@ -5,7 +5,7 @@ var app = angular.module("Autovermietung");
 
 app.controller("AutoController", function($scope,$http,$location){
 
-
+//prüft ob User eingelogt ist:
 
 
     var list = {},
@@ -23,16 +23,18 @@ app.controller("AutoController", function($scope,$http,$location){
 
     }
     else {
+        //Logout button setzen
         $scope.s = true;
         $http.get("http://localhost:3000/autos/" + list['Session']).success(function (response) {
+            //beim Fehler wird eine Message ausgeben
             if(typeof  response.message != 'undefined'){
                 alert(response.message);
             }
 
-
+            //wenn Session angelaufen oder nicht vorhanden zurück zum Login
             if( response.returnCode =='10')
             {
-
+                //löscht den Cookie
                 document.cookie ='Session = 0;expires=Thu, 01 Jan 1970 00:00:01 GMT';
                 $location.url("/session/new");
             }

@@ -3,7 +3,10 @@
  */
 var soap = require('soap');
 
-var url = 'http://192.168.1.109:8080/Autovermietung_OnlineSystem/OnlineAdminIntegration?wsdl';
+/**
+ * Liefert Alle Kunden
+ * @params Sessionid Sessionid des Users
+ */
 exports.get= function(req, res){
 
     var args = {Sessionid:   req.params.sessionId};
@@ -25,7 +28,11 @@ exports.get= function(req, res){
     }, global.urlforSoap2);
 
 }
-
+/**
+ * Holt den Benutzer vom Server
+ * @params Sessionid Sessionid des Users
+ * @params Kundeemail
+ */
 exports.getUser= function(req, res){
 
     var args = {Sessionid: req.params.sessionId, Kundeemail:req.params.userId};
@@ -47,10 +54,20 @@ exports.getUser= function(req, res){
     }, global.urlforSoap2);
 
 }
-
+/**
+ * Speichert den Benutzer auf dem Server
+ * @params Sessionid Sessionid des Users
+ * @params Kundenemail
+ * @params kvorname Vorname des Kunden
+ * @params knachname Nachname des Kunden
+ * @params fsnummer  Führerscheinnummer des Kunden
+ * @params pan Personalausweißnummer des Kunden
+ * @params saf the saf des Kunden
+ * @params admin Adminrechte
+ */
 exports.saveUser= function(req, res){
 
-    var args = {Sessionid: req.params.sessionId, Kundeemail:req.params.userId,admin: req.body.admin,fsnummer: req.body.fsnummer,kvorname: req.body.kvorname, knachname: req.body.knachname,pan:req.body.pan,saf:req.body.saf};
+    var args = {Sessionid: req.params.sessionId, Kundeemail:req.params.userId,admin: req.body.admin,fsnummer: req.body.fsnummer,kvorname: req.body.kvorname, knachname: req.body.knachname,pan:req.body.pan,aktive:req.body.aktive};
     soap.createClient(global.urlforSoap, function (err, client) {
         //client.test(args, function(err, result) {
 
@@ -69,6 +86,12 @@ exports.saveUser= function(req, res){
     }, global.urlforSoap2);
 
 }
+/**
+ * Speichert den Benutzer auf dem Server
+ * @params Hash
+ * return HTML!!!
+ */
+
 exports.emailbestaetigen=function(req,res){
 
     var args = {Hash: req.params.hash};

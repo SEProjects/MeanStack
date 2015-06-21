@@ -1,10 +1,10 @@
 /**
  * Created by kevin on 07.06.15.
+ * Antwort Routen für Alle Autoartenaufrufe
  */
 var express = require('express');
 var router = express.Router();
 var aa = require('../controllers/AutoArtenController.js');
-/* GET users listing. */
 router.get('/:sessionId',aa.get);
 router.get('/:sessionId/:AAId',aa.getAA);
 router.put('/:sessionId/:AAId',aa.saveAA);

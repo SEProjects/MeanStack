@@ -4,6 +4,7 @@
 var app = angular.module("Autovermietung");
 
 app.controller("KSEditController",function($scope, $http, $location,$routeParams){
+    //prüft ob User eingelogt ist:
     $scope.KS = {};
     var id = $routeParams.id;
     var list = {},
@@ -33,17 +34,19 @@ app.controller("KSEditController",function($scope, $http, $location,$routeParams
 
     }
     else {
+        //Logout button setzen
         $scope.s = true;
         $scope.saveKS = function () {
             $http.put("http://localhost:3000/ks/" + list['Session'] + "/" + id, $scope.KS)
                 .success(function (response) {
+                    //beim Fehler wird eine Message ausgeben
                     if(typeof  response.message != 'undefined'){
                         alert(response.message);
                     }
-
+                    //wenn Session angelaufen oder nicht vorhanden zurück zum Login
                     if( response.returnCode =='10')
                     {
-
+                        //lösche Cookie
                         document.cookie ='Session = 0;expires=Thu, 01 Jan 1970 00:00:01 GMT';
                         $location.url("/session/new");
                     }

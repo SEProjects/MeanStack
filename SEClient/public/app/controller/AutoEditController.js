@@ -4,6 +4,7 @@
 var app = angular.module("Autovermietung");
 
 app.controller("AutoEditController", function($scope,$http,$location,$routeParams){
+    //prüft ob User eingelogt ist:
     $scope.auto = {};
     var aa = [];
 
@@ -22,8 +23,10 @@ app.controller("AutoEditController", function($scope,$http,$location,$routeParam
 
     }
     else {
+        //Logout button setzen
         $scope.s = true;
         $http.get("http://localhost:3000/aa/" + list['Session']).success(function (response) {
+            //beim Fehler wird eine Message ausgeben
             if(typeof  response.message != 'undefined'){
                 alert(response.message);
             }
@@ -44,6 +47,7 @@ app.controller("AutoEditController", function($scope,$http,$location,$routeParam
 
         })
         $http.get("http://localhost:3000/autos/" + list['Session'] + "/" + id).success(function (response) {
+            //beim Fehler wird eine Message ausgeben
             if(typeof  response.message != 'undefined'){
                 alert(response.message);
             }
@@ -60,13 +64,14 @@ app.controller("AutoEditController", function($scope,$http,$location,$routeParam
         $scope.saveAuto = function () {
             $http.put("http://localhost:3000/autos/" + list['Session'] + "/" + id, $scope.auto)
                 .success(function (response) {
+                    //beim Fehler wird eine Message ausgeben
                     if(typeof  response.message != 'undefined'){
                         alert(response.message);
                     }
-
+                    //wenn Session angelaufen oder nicht vorhanden zurück zum Login
                     if( response.returnCode =='10')
                     {
-
+                        //löscht den Cookie
                         document.cookie ='Session = 0;expires=Thu, 01 Jan 1970 00:00:01 GMT';
                         $location.url("/session/new");
                     }

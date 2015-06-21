@@ -3,6 +3,7 @@
  */
 var app = angular.module("Autovermietung");
 app.controller('AutoArtImageUploadCreateController', ['$scope', 'Upload','$routeParams', '$window', '$http', function ($scope, Upload, $routeParams, $window, $http) {
+    //prüft ob User eingelogt ist:
     var id = $routeParams.id;
     var list = {},
         rc = document.cookie;
@@ -18,12 +19,14 @@ app.controller('AutoArtImageUploadCreateController', ['$scope', 'Upload','$route
 
     }
     else {
-        $scope.s = true;
+        //Logout button setzen
+           $scope.s = true;
         $http.get("http://localhost:3000/aa/pic/" + list['Session'] + "/" + id).success(function (response) {
+            //beim Fehler wird eine Message ausgeben
             if(typeof  response.message != 'undefined'){
                 alert(response.message);
             }
-
+            //wenn Session angelaufen oder nicht vorhanden zurück zum Login
             if( response.returnCode =='10')
             {
 
@@ -32,7 +35,7 @@ app.controller('AutoArtImageUploadCreateController', ['$scope', 'Upload','$route
             }
             $scope.image = response.bild;
         });
-
+        // füge file upload hinzu
         $scope.$watch('files', function () {
             $scope.upload($scope.files);
         });
@@ -46,14 +49,15 @@ app.controller('AutoArtImageUploadCreateController', ['$scope', 'Upload','$route
                         url: 'http://localhost:3000/aa/pic/' + list['Session'] + "/" + id,
 
                         file: file
-                    }).success(function () {
+                    }).success(function (response) {
+                        //gibt Fehlermeldung vom Server aus
                         if(typeof  response.message != 'undefined'){
                             alert(response.message);
                         }
-
+                        //wenn Session angelaufen oder nicht vorhanden zurück zum Login
                         if( response.returnCode =='10')
                         {
-
+                            //lösche Cookie
                             document.cookie ='Session = 0;expires=Thu, 01 Jan 1970 00:00:01 GMT';
                             $location.url("/session/new");
                         }

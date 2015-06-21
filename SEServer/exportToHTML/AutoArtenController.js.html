@@ -1,0 +1,225 @@
+<html>
+<head>
+<title>AutoArtenController.js</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(128,128,128); font-style: italic; }
+.s1 { }
+.s2 { color: rgb(0,0,128); font-weight: bold; }
+.s3 { color: rgb(0,128,0); font-weight: bold; }
+.s4 { color: rgb(128,128,128); font-weight: bold; font-style: italic; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+AutoArtenController.js</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0">/** 
+ * Created by kevin on 08.06.15. 
+ */</span><span class="s1"> 
+</span><span class="s2">var </span><span class="s1">soap = require(</span><span class="s3">'soap'</span><span class="s1">); 
+</span><span class="s2">var </span><span class="s1">fs = require(</span><span class="s3">'fs'</span><span class="s1">); 
+</span><span class="s0">/** 
+ * holt alle Autoarten vom Server über einen Soap aufruf. 
+ * </span><span class="s4">@params </span><span class="s0">Sessionid Sessionid des Clients 
+ */</span><span class="s1"> 
+exports.get= </span><span class="s2">function</span><span class="s1">(req, res){ 
+ 
+    </span><span class="s2">var </span><span class="s1">args = {Sessionid:   req.params.sessionId}; 
+    soap.createClient(global.urlforSoap, </span><span class="s2">function </span><span class="s1">(err, client) { 
+        </span><span class="s0">//client.test(args, function(err, result) {</span><span class="s1"> 
+ 
+        client.getAllAA(args, </span><span class="s2">function </span><span class="s1">(err, result) { 
+ 
+ 
+            res.jsonp(result.return); 
+ 
+ 
+        }) 
+ 
+ 
+ 
+ 
+        </span><span class="s0">//});</span><span class="s1"> 
+    }, global.urlforSoap2); 
+ 
+} 
+</span><span class="s0">/** 
+ * holt selectierte Autoart vom Server 
+ * </span><span class="s4">@params </span><span class="s0">Sessionid Sessionid des Clients 
+ * </span><span class="s4">@params </span><span class="s0">AAid gesuchte Autoart 
+ */</span><span class="s1"> 
+exports.getAA= </span><span class="s2">function</span><span class="s1">(req, res){ 
+ 
+    </span><span class="s2">var </span><span class="s1">args = {Sessionid: req.params.sessionId, AAid:req.params.AAId}; 
+    soap.createClient(global.urlforSoap, </span><span class="s2">function </span><span class="s1">(err, client) { 
+        </span><span class="s0">//client.test(args, function(err, result) {</span><span class="s1"> 
+ 
+        client.getAA(args, </span><span class="s2">function </span><span class="s1">(err, result) { 
+ 
+ 
+            res.jsonp(result.return); 
+ 
+ 
+        }) 
+ 
+ 
+ 
+ 
+        </span><span class="s0">//});</span><span class="s1"> 
+    }, global.urlforSoap2); 
+ 
+} 
+</span><span class="s0">/** 
+ * Speichert Autoartendetails auf dem Server über einen Soap aufruf. 
+ * </span><span class="s4">@params </span><span class="s0">Sessionid Sessionid des Clients 
+ * </span><span class="s4">@params </span><span class="s0">AAid AutoArtid 
+ * </span><span class="s4">@body-parser </span><span class="s0">beschreibung Beschreibung der Autoart 
+ * </span><span class="s4">@body </span><span class="s0">kofferraumvolumen Kofferraumvolumen der Autoart 
+ * </span><span class="s4">@body </span><span class="s0">kraftstoffverbrauch Kraftstoffverbrauch der Autoart 
+ * </span><span class="s4">@body </span><span class="s0">ks Kraftstoffid der Autoart 
+ * </span><span class="s4">@body </span><span class="s0">marke Markenid der Autoart 
+ * </span><span class="s4">@body </span><span class="s0">pjk Preis je Km der Autoart 
+ * </span><span class="s4">@body </span><span class="s0">ps Ps der Autoart 
+ * </span><span class="s4">@body </span><span class="s0">sitzanzahl Sitzanzahl der Autoart 
+ * 
+ */</span><span class="s1"> 
+exports.saveAA= </span><span class="s2">function</span><span class="s1">(req, res){ 
+ 
+    </span><span class="s2">var </span><span class="s1">args = {Sessionid: req.params.sessionId, AAid:req.params.AAId,beschreibung: req.body.beschreibung,bildlink:req.body.bildlink, kofferraumvolumen: parseInt(req.body.kofferraumvolumen),kraftstoffverbrauch:req.body.kraftstoffverbrauch, 
+    ks:req.body.ks,marke:req.body.marke,pjk:req.body.pjk,ps:req.body.ps,sitzanzahl:req.body.sitzanzahl}; 
+    soap.createClient(global.urlforSoap, </span><span class="s2">function </span><span class="s1">(err, client) { 
+        </span><span class="s0">//client.test(args, function(err, result) {</span><span class="s1"> 
+        console.info(args); 
+        client.saveAA(args, </span><span class="s2">function </span><span class="s1">(err, result) { 
+ 
+ 
+            res.jsonp(result.return); 
+ 
+ 
+        }) 
+ 
+ 
+ 
+ 
+ 
+ 
+        </span><span class="s0">//});</span><span class="s1"> 
+    }, global.urlforSoap2); 
+ 
+} 
+</span><span class="s0">/** 
+ * erzeugt eine neue Autoart auf dem Server. 
+ * </span><span class="s4">@params </span><span class="s0">Sessionid Sessionid des Clients 
+ * </span><span class="s4">@body </span><span class="s0">beschreibung Beschreibung der Autoart 
+ * </span><span class="s4">@body </span><span class="s0">kofferraumvolumen Kofferraumvolumen der Autoart 
+ * </span><span class="s4">@body </span><span class="s0">kraftstoffverbrauch Kraftstoffverbrauch der Autoart 
+ * </span><span class="s4">@body </span><span class="s0">ks Kraftstoffid der Autoart 
+ * </span><span class="s4">@body </span><span class="s0">marke Markenid der Autoart 
+ * </span><span class="s4">@body </span><span class="s0">pjk Preis je Km der Autoart 
+ * </span><span class="s4">@body </span><span class="s0">ps Ps der Autoart 
+ * </span><span class="s4">@body </span><span class="s0">sitzanzahl Sitzanzahl der Autoart 
+ */</span><span class="s1"> 
+ 
+exports.newAA= </span><span class="s2">function</span><span class="s1">(req, res){ 
+ 
+    </span><span class="s2">var </span><span class="s1">args = {Sessionid: req.params.sessionId, beschreibung: req.body.beschreibung,bildlink:req.body.bildlink, kofferraumvolumen: parseInt(req.body.kofferraumvolumen),kraftstoffverbrauch:req.body.kraftstoffverbrauch, 
+        ks:req.body.ks,marke:req.body.marke,pjk:req.body.pjk,ps:req.body.ps,sitzanzahl:req.body.sitzanzahl}; 
+    soap.createClient(global.urlforSoap, </span><span class="s2">function </span><span class="s1">(err, client) { 
+        </span><span class="s0">//client.test(args, function(err, result) {</span><span class="s1"> 
+        console.info(args); 
+        client.createAA(args, </span><span class="s2">function </span><span class="s1">(err, result) { 
+ 
+ 
+            res.jsonp(result.return); 
+ 
+ 
+        }) 
+ 
+ 
+ 
+        </span><span class="s0">//});</span><span class="s1"> 
+    }, global.urlforSoap2); 
+ 
+}; 
+</span><span class="s0">/** 
+ * Legt ein neues Bild für die Autoarten über einen Soap aufruf an. 
+ * </span><span class="s4">@params </span><span class="s0">Sessionid Sessionid des Clients 
+ * </span><span class="s4">@file </span><span class="s0">Bild bildupload 
+ */</span><span class="s1"> 
+exports.createPic= </span><span class="s2">function</span><span class="s1">(req, res){ 
+    console.log(req.files.file.path); 
+ 
+ 
+ 
+ 
+        </span><span class="s0">// read binary data</span><span class="s1"> 
+        </span><span class="s2">var </span><span class="s1">bitmap = fs.readFileSync(req.files.file.path); 
+        </span><span class="s0">// convert binary data to base64 encoded string</span><span class="s1"> 
+        console.info(</span><span class="s2">new </span><span class="s1">Buffer(bitmap).toString(</span><span class="s3">'base64'</span><span class="s1">)); 
+ 
+    </span><span class="s2">var </span><span class="s1">args = {Sessionid: req.params.sessionId,AAid: req.params.AAid, Bild: </span><span class="s2">new </span><span class="s1">Buffer(bitmap).toString(</span><span class="s3">'base64'</span><span class="s1">)}; 
+    soap.createClient(global.urlforSoap, </span><span class="s2">function </span><span class="s1">(err, client) { 
+        </span><span class="s0">//client.test(args, function(err, result) {</span><span class="s1"> 
+        console.info(args); 
+        client.saveAABild(args, </span><span class="s2">function </span><span class="s1">(err, result) { 
+ 
+ 
+            res.jsonp(result.return); 
+ 
+ 
+        }) 
+ 
+ 
+ 
+        </span><span class="s0">//});</span><span class="s1"> 
+    }, global.urlforSoap2); 
+ 
+ 
+ 
+    } 
+</span><span class="s0">/** 
+ * holt das Bild der Autoarten vom Server über einen Soap aufruf. 
+ * </span><span class="s4">@params </span><span class="s0">Sessionid Sessionid des Clients 
+ * </span><span class="s4">@params </span><span class="s0">AAid AutoArt id 
+ */</span><span class="s1"> 
+exports.getPic= </span><span class="s2">function</span><span class="s1">(req, res){ 
+ 
+ 
+ 
+ 
+ 
+ 
+    </span><span class="s2">var </span><span class="s1">args = {Sessionid: req.params.sessionId,AAid: req.params.AAid}; 
+    soap.createClient(global.urlforSoap, </span><span class="s2">function </span><span class="s1">(err, client) { 
+        </span><span class="s0">//client.test(args, function(err, result) {</span><span class="s1"> 
+        console.info(args); 
+        client.getAABild(args, </span><span class="s2">function </span><span class="s1">(err, result) { 
+ 
+ 
+            res.jsonp(result.return); 
+ 
+ 
+        }) 
+ 
+ 
+ 
+        </span><span class="s0">//});</span><span class="s1"> 
+    }, global.urlforSoap2); 
+ 
+ 
+ 
+} 
+ 
+ 
+ 
+ 
+ 
+</span></pre>
+</body>
+</html>

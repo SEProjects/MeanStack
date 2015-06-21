@@ -6,6 +6,11 @@ var app = require('../app');
 
 
 var url = 'http://192.168.1.109:8080/Autovermietung_OnlineSystem/OnlineAdminIntegration?wsdl';
+/**
+ * Bestätigt die Rechnung als Bezahlt auf dem Server
+ * @body email AdminEmail
+ * @body password password des Admins
+ */
 exports.post = function(req, res){
          var args = {email: req.body.email, password: req.body.password};
         soap.createClient(global.urlforSoap, function (err, client) {
@@ -26,6 +31,7 @@ exports.post = function(req, res){
         }, global.urlforSoap2);
 
     }
+//nicht benutzt
 exports.show = function(req, res){
     req.params.sessionId
     var args = {Sessionid:   req.params.sessionId};

@@ -1,0 +1,160 @@
+<html>
+<head>
+<title>AutoController.js</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(128,128,128); font-style: italic; }
+.s1 { }
+.s2 { color: rgb(0,0,128); font-weight: bold; }
+.s3 { color: rgb(0,128,0); font-weight: bold; }
+.s4 { color: rgb(128,128,128); font-weight: bold; font-style: italic; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+AutoController.js</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0">/** 
+ * Created by kevin on 04.06.15. 
+ */</span><span class="s1"> 
+</span><span class="s2">var </span><span class="s1">soap = require(</span><span class="s3">'soap'</span><span class="s1">); 
+ 
+</span><span class="s0">/** 
+ * Holt alle Autos vom Server 
+ * </span><span class="s4">@params </span><span class="s0">Sessionid Sessionid des Clients 
+ */</span><span class="s1"> 
+exports.get= </span><span class="s2">function</span><span class="s1">(req, res){ 
+ 
+    </span><span class="s2">var </span><span class="s1">args = {Sessionid:   req.params.sessionId}; 
+    soap.createClient(global.urlforSoap, </span><span class="s2">function </span><span class="s1">(err, client) { 
+        </span><span class="s0">//client.test(args, function(err, result) {</span><span class="s1"> 
+ 
+        client.getAllAutos(args, </span><span class="s2">function </span><span class="s1">(err, result) { 
+ 
+ 
+            res.jsonp(result.return); 
+ 
+ 
+        }) 
+ 
+ 
+ 
+ 
+        </span><span class="s0">//});</span><span class="s1"> 
+    }, global.urlforSoap2); 
+ 
+} 
+</span><span class="s0">/** 
+ * holt das selectierte Auto vom Server. 
+ * </span><span class="s4">@params </span><span class="s0">Sessionid Sessionid des Clients 
+ * </span><span class="s4">@params </span><span class="s0">AAid AutoArt id 
+ */</span><span class="s1"> 
+exports.getAuto= </span><span class="s2">function</span><span class="s1">(req, res){ 
+ 
+    </span><span class="s2">var </span><span class="s1">args = {Sessionid: req.params.sessionId, Autoid:req.params.AutoId}; 
+    soap.createClient(global.urlforSoap, </span><span class="s2">function </span><span class="s1">(err, client) { 
+        </span><span class="s0">//client.test(args, function(err, result) {</span><span class="s1"> 
+ 
+        client.getAuto(args, </span><span class="s2">function </span><span class="s1">(err, result) { 
+ 
+ 
+            res.jsonp(result.return); 
+ 
+ 
+        }) 
+ 
+ 
+ 
+ 
+        </span><span class="s0">//});</span><span class="s1"> 
+    }, global.urlforSoap2); 
+ 
+} 
+</span><span class="s0">/** 
+ * speichert Autodetails auf dem Server 
+ * </span><span class="s4">@params </span><span class="s0">Sessionid Sessionid des Clients 
+ * </span><span class="s4">@params </span><span class="s0">AutoID 
+ * </span><span class="s4">@body </span><span class="s0">Autoid des Autos 
+ * </span><span class="s4">@body </span><span class="s0">bez Die Bezeichnungs des Autos 
+ * </span><span class="s4">@body </span><span class="s0">AAid die Autoartid des Autos 
+ */</span><span class="s1"> 
+exports.saveAuto= </span><span class="s2">function</span><span class="s1">(req, res){ 
+ 
+    </span><span class="s2">var </span><span class="s1">args = {Sessionid: req.params.sessionId, Autoid:req.params.AutoId,AAid: req.body.aa,bez: req.body.bez}; 
+    soap.createClient(global.urlforSoap, </span><span class="s2">function </span><span class="s1">(err, client) { 
+        </span><span class="s0">//client.test(args, function(err, result) {</span><span class="s1"> 
+ 
+        client.saveAuto(args, </span><span class="s2">function </span><span class="s1">(err, result) { 
+ 
+ 
+            res.jsonp(result.return); 
+ 
+ 
+        }) 
+ 
+ 
+ 
+ 
+        </span><span class="s0">//});</span><span class="s1"> 
+    }, global.urlforSoap2); 
+ 
+} 
+</span><span class="s0">//noch nicht implementiert</span><span class="s1"> 
+exports.deleteAuto= </span><span class="s2">function</span><span class="s1">(req, res){ 
+ 
+    </span><span class="s2">var </span><span class="s1">args = {Sessionid: req.params.sessionId, Kundeemail:req.params.AutoId}; 
+    soap.createClient(global.urlforSoap, </span><span class="s2">function </span><span class="s1">(err, client) { 
+        </span><span class="s0">//client.test(args, function(err, result) {</span><span class="s1"> 
+ 
+        client.deleteAuto(args, </span><span class="s2">function </span><span class="s1">(err, result) { 
+ 
+ 
+            res.jsonp(result.return); 
+ 
+ 
+        }) 
+ 
+ 
+ 
+ 
+        </span><span class="s0">//});</span><span class="s1"> 
+    }, global.urlforSoap2); 
+ 
+} 
+</span><span class="s0">/** 
+ * erzeugt ein neues Auto auf dem Server 
+ * </span><span class="s4">@params </span><span class="s0">Sessionid Sessionid des Clients 
+ * </span><span class="s4">@body </span><span class="s0">bez Die Bezeichnungs des Autos 
+ * </span><span class="s4">@body </span><span class="s0">AAid die Autoartid des Autos 
+ */</span><span class="s1"> 
+exports.createAuto= </span><span class="s2">function</span><span class="s1">(req, res){ 
+ 
+    </span><span class="s2">var </span><span class="s1">args = {Sessionid: req.params.sessionId, AAid: req.body.aa,bez: req.body.bez}; 
+    soap.createClient(global.urlforSoap, </span><span class="s2">function </span><span class="s1">(err, client) { 
+        </span><span class="s0">//client.test(args, function(err, result) {</span><span class="s1"> 
+ 
+        client.createAuto(args, </span><span class="s2">function </span><span class="s1">(err, result) { 
+ 
+ 
+            res.jsonp(result.return); 
+ 
+ 
+        }) 
+ 
+ 
+ 
+ 
+        </span><span class="s0">//});</span><span class="s1"> 
+    }, global.urlforSoap2); 
+ 
+} 
+ 
+ 
+</span></pre>
+</body>
+</html>

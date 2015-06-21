@@ -5,6 +5,10 @@
 var soap = require('soap');
 
 var url = 'http://192.168.1.109:8080/Autovermietung_OnlineSystem/OnlineAdminIntegration?wsdl';
+/**
+ * Holt alle Marken vom Server
+ * @params Sessionid Sessionid des Users
+ * */
 exports.get= function(req, res){
 
     var args = {Sessionid:   req.params.sessionId};
@@ -26,7 +30,11 @@ exports.get= function(req, res){
     }, global.urlforSoap2);
 
 }
-
+/**
+ * Holt die Selektierte Marke vom Server
+ * @params Sessionid Sessionid des Users
+ * @params MarkeId
+ */
 exports.getMarke= function(req, res){
 
     var args = {Sessionid: req.params.sessionId, MarkenId:req.params.MarkeId};
@@ -48,7 +56,12 @@ exports.getMarke= function(req, res){
     }, global.urlforSoap2);
 
 }
-
+/**
+ * Speichert die Marke auf dem Server
+ * @params Sessionid Sessionid des Users
+ * @params MarkeId
+ * @body Markenname
+ */
 exports.saveMarke= function(req, res){
 
     var args = {Sessionid: req.params.sessionId,MarkenId: req.params.MarkeId,Markenname: req.body.markenname};
@@ -69,7 +82,11 @@ exports.saveMarke= function(req, res){
     }, global.urlforSoap2);
 
 }
-
+/**
+ * Legt eine neue Marke auf dem Server an
+ * @params Sessionid Sessionid des Users
+ * @body Markenname
+ */
 exports.newMarke= function(req, res){
 
     var args = {Sessionid: req.params.sessionId,Markenname: req.body.markenname};

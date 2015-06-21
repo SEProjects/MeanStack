@@ -4,6 +4,7 @@
 var app = angular.module("Autovermietung");
 
 app.controller("SessionController", function($scope,$http,$location,  $window){
+    //prüft ob User eingelogt ist:
    $scope.login = {};
 
     var list = {},
@@ -23,11 +24,20 @@ app.controller("SessionController", function($scope,$http,$location,  $window){
         $http.post("http://localhost:3000/session", $scope.login).success(function (response) {
 
             console.info(response);
-            document.cookie = response;
-            document.cookie = "Session = " + encodeURIComponent(response.session) +
-                "; max-age=" + 60 * 60 * 24 * 1;
-            console.info(document.cookie);
-            $window.location.reload();
+           if(response.returnCode == '0') {
+
+               document.cookie = "Session = " + encodeURIComponent(response.session) +
+                   "; max-age=" + 60 * 60 * 24 * 1;
+               console.info(document.cookie);
+               $window.location.reload();
+
+           }
+            else
+           {
+               if(typeof  response.message != 'undefined'){
+                   alert(response.message);
+               }
+           }
         })
     }
 });
