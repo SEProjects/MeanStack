@@ -3,7 +3,7 @@
  */
 var app = angular.module("Autovermietung");
 
-app.controller("SessionController", function($scope,$http,$location,  $window){
+app.controller("SessionController", function($scope,$http,$location,global,$window){
     //prüft ob User eingelogt ist:
    $scope.login = {};
 
@@ -21,7 +21,7 @@ app.controller("SessionController", function($scope,$http,$location,  $window){
     $scope.createSession = function() {
 
 
-        $http.post("http://10.60.70.15:3000/session", $scope.login).success(function (response) {
+        $http.post(global.url + "/session", $scope.login).success(function (response) {
 
             console.info(response);
            if(response.returnCode == '0') {

@@ -18,15 +18,15 @@
                 <th>{{daten.item[2].$value;}}</th>
                 <th>{{daten.item[4].$value.substring(8,10) +"." + daten.item[4].$value.substring(5,7) + "." +daten.item[4].$value.substring(0,4)}}</th>
                 <th><a href="#/autolocation/{{daten.item[3].$value}}" class="btn btn-default">anzeigen</a></th>
-                <th><input type="submit" class="btn btn-primary" value="bestätigen" ng-click="deleteSchaden(daten.item[0].$value)" /></th>
+                <th><input type="submit" class="btn btn-primary" value="löschen" ng-click="deleteSchaden(daten.item[0].$value)" /></th>
             </tbody>
         </table>
 
 
     </div>
 
-
 </div>
+<div class="row">
 <div class="col-md-2" style="float: left">
     <h1>Dreck</h1>
     <table class="table table-hover table-striped">
@@ -45,9 +45,10 @@
             <th>{{daten.item[1].$value;}}</th>
             <th>{{daten.item[2].$value.substring(8,10) +"." + daten.item[2].$value.substring(5,7) + "." +daten.item[2].$value.substring(0,4)}}</th>
             <th><a href="#/autolocation/{{daten.item[3].$value}}" class="btn btn-default">anzeigen</a></th>
-            <th><input type="submit" class="btn btn-primary" value="bestätigen" ng-click="deleteDreck(daten.item[0].$value)" /></th>
+            <th><input type="submit" class="btn btn-primary" value="löschen" ng-click="deleteDreck(daten.item[0].$value)" /></th>
         </tbody>
     </table>
 
 
-</div>
+    </div>
+    </div>

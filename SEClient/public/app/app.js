@@ -16,6 +16,16 @@ app.run(function($rootScope,$location) {
     };
 
 });
+app.factory('global', function () {
+
+        var global = {
+
+                url: "http://192.168.1.107:3000"
+     };
+
+      return global;
+
+  });
 app.config(function($routeProvider) {
 
     $routeProvider

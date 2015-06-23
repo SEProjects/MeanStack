@@ -67,7 +67,7 @@ exports.getUser= function(req, res){
  */
 exports.saveUser= function(req, res){
 
-    var args = {Sessionid: req.params.sessionId, Kundeemail:req.params.userId,admin: req.body.admin,fsnummer: req.body.fsnummer,kvorname: req.body.kvorname, knachname: req.body.knachname,pan:req.body.pan,aktive:req.body.aktive};
+    var args = {Sessionid: req.params.sessionId, Kundeemail:req.params.userId,admin: req.body.admin,fsnummer: req.body.fsnummer,kvorname: req.body.kvorname, knachname: req.body.knachname,pan:req.body.pan,aktive:req.body.aktive,strasse: req.body.strasse};
     soap.createClient(global.urlforSoap, function (err, client) {
         //client.test(args, function(err, result) {
 

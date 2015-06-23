@@ -6,7 +6,7 @@
  */
 var app = angular.module("Autovermietung");
 
-app.controller("KundeEditController",function($scope,$http,$location,$routeParams){
+app.controller("KundeEditController",function($scope,$http,$location,$routeParams,global){
     //prüft ob User eingelogt ist:
     $scope.Kunde = {};
     var id = $routeParams.id;
@@ -28,7 +28,7 @@ app.controller("KundeEditController",function($scope,$http,$location,$routeParam
         console.info("!");
         //Logout button setzen
         $scope.s = true;
-        $http.get("http://10.60.70.15:3000/users/" + list['Session'] + "/" + id).success(function (response) {
+        $http.get(global.url + "/users/" + list['Session'] + "/" + id).success(function (response) {
             if(typeof  response.message != 'undefined'){
                 alert(response.message);
             }
@@ -45,7 +45,7 @@ app.controller("KundeEditController",function($scope,$http,$location,$routeParam
 
     }
     $scope.saveKunde = function () {
-        $http.put("http://10.60.70.15:3000/users/" + list['Session'] + "/" + id, $scope.Kunde)
+        $http.put(global.url + "/users/" + list['Session'] + "/" + id, $scope.Kunde)
             .success(function (response) {
                 //beim Fehler wird eine Message ausgeben
                 if (typeof  response.message != 'undefined') {

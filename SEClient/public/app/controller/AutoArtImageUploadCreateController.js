@@ -2,7 +2,7 @@
  * Created by kevin on 11.06.15.
  */
 var app = angular.module("Autovermietung");
-app.controller('AutoArtImageUploadCreateController', ['$scope', 'Upload','$routeParams', '$window', '$http', function ($scope, Upload, $routeParams, $window, $http) {
+app.controller('AutoArtImageUploadCreateController', ['$scope', 'Upload','$routeParams', '$window', '$http','global', function ($scope, Upload, $routeParams, $window, $http,global) {
     //prüft ob User eingelogt ist:
     var id = $routeParams.id;
     var list = {},
@@ -21,7 +21,7 @@ app.controller('AutoArtImageUploadCreateController', ['$scope', 'Upload','$route
     else {
         //Logout button setzen
            $scope.s = true;
-        $http.get("http://10.60.70.15:3000/aa/pic/" + list['Session'] + "/" + id).success(function (response) {
+        $http.get(global.url + "/aa/pic/" + list['Session'] + "/" + id).success(function (response) {
             //beim Fehler wird eine Message ausgeben
             if(typeof  response.message != 'undefined'){
                 alert(response.message);
@@ -46,7 +46,7 @@ app.controller('AutoArtImageUploadCreateController', ['$scope', 'Upload','$route
                 for (var i = 0; i < files.length; i++) {
                     var file = files[i];
                     Upload.upload({
-                        url: 'http://10.60.70.15:3000/aa/pic/' + list['Session'] + "/" + id,
+                        url: global.url + '/aa/pic/' + list['Session'] + "/" + id,
 
                         file: file
                     }).success(function (response) {

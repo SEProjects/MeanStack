@@ -3,7 +3,7 @@
  */
 var app = angular.module("Autovermietung");
 
-app.controller("AutoController", function($scope,$http,$location){
+app.controller("AutoController", function($scope,$http,$location,global){
 
 //prüft ob User eingelogt ist:
 
@@ -25,7 +25,7 @@ app.controller("AutoController", function($scope,$http,$location){
     else {
         //Logout button setzen
         $scope.s = true;
-        $http.get("http://10.60.70.15:3000/autos/" + list['Session']).success(function (response) {
+        $http.get(global.url + "/autos/" + list['Session']).success(function (response) {
             //beim Fehler wird eine Message ausgeben
             if(typeof  response.message != 'undefined'){
                 alert(response.message);

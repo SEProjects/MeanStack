@@ -3,7 +3,7 @@
  */
 var app = angular.module("Autovermietung");
 
-app.controller("AutoArtenEditController", function($scope,$http,$location,$routeParams){
+app.controller("AutoArtenEditController", function($scope,$http,$location,$routeParams,global){
     //prüft ob User eingelogt ist:
     $scope.aa = {};
     var marken = [];
@@ -25,7 +25,7 @@ app.controller("AutoArtenEditController", function($scope,$http,$location,$route
     else {
         //Logout button setzen
         $scope.s = true;
-        $http.get("http://10.60.70.15:3000/marken/" + list['Session']).success(function (response) {
+        $http.get(global.url + "/marken/" + list['Session']).success(function (response) {
             //beim Fehler wird eine Message ausgeben
             if(typeof  response.message != 'undefined'){
                 alert(response.message);
@@ -47,7 +47,7 @@ app.controller("AutoArtenEditController", function($scope,$http,$location,$route
             console.info(marken);
 
         })
-        $http.get("http://10.60.70.15:3000/ks/" + list['Session']).success(function (response) {
+        $http.get(global.url + "/ks/" + list['Session']).success(function (response) {
             //beim Fehler wird eine Message ausgeben
             if(typeof  response.message != 'undefined'){
                 alert(response.message);
@@ -69,7 +69,7 @@ app.controller("AutoArtenEditController", function($scope,$http,$location,$route
 
         })
 
-        $http.get("http://10.60.70.15:3000/aa/" + list['Session'] + "/" + id).success(function (response) {
+        $http.get(global.url + "/aa/" + list['Session'] + "/" + id).success(function (response) {
             //beim Fehler wird eine Message ausgeben
             if(typeof  response.message != 'undefined'){
                 alert(response.message);
@@ -86,7 +86,7 @@ app.controller("AutoArtenEditController", function($scope,$http,$location,$route
         });
 
         $scope.saveAA = function () {
-            $http.put("http://10.60.70.15:3000/aa/" + list['Session'] + "/" + id, $scope.aa)
+            $http.put(global.url + "/aa/" + list['Session'] + "/" + id, $scope.aa)
                 .success(function (response) {
                     //beim Fehler wird eine Message ausgeben
                     if(typeof  response.message != 'undefined'){

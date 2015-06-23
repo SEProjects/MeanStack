@@ -3,7 +3,7 @@
  */
 var app = angular.module("Autovermietung");
 
-app.controller("WelcomeController", function($http,$location,$scope){
+app.controller("WelcomeController", function($http,$location,$scope,global){
 
 
 
@@ -21,7 +21,7 @@ app.controller("WelcomeController", function($http,$location,$scope){
     } else
     {
         $scope.s = true;
-        $http.get("http://10.60.70.15:3000/schaden/" + list['Session']).success(function (response) {
+        $http.get(global.url + "/schaden/" + list['Session']).success(function (response) {
             console.info(response);
             if(typeof  response.message != 'undefined'){
                 alert(response.message);
@@ -34,7 +34,7 @@ app.controller("WelcomeController", function($http,$location,$scope){
                 $location.url("/session/new");
             }
             $scope.schaden = response.datensaetze;
-            $http.get("http://10.60.70.15:3000/dreck/" + list['Session']).success(function (response) {
+            $http.get(global.url + "/dreck/" + list['Session']).success(function (response) {
                 console.info(response);
                 if (typeof  response.message != 'undefined') {
                     alert(response.message);
@@ -56,7 +56,7 @@ app.controller("WelcomeController", function($http,$location,$scope){
 
     }
     $scope.deleteDreck= function (id) {
-        $http.delete("http://10.60.70.15:3000/dreck/" + list['Session']+ "/"  +id).success(function (response) {
+        $http.delete(global.url + "/dreck/" + list['Session']+ "/"  +id).success(function (response) {
             console.info(response);
             if (typeof  response.message != 'undefined') {
                 alert(response.message);
@@ -71,7 +71,7 @@ app.controller("WelcomeController", function($http,$location,$scope){
         })
     }
     $scope.deleteSchaden= function (id) {
-        $http.delete("http://10.60.70.15:3000/schaden/" + list['Session'] + "/"  +id).success(function (response) {
+        $http.delete(global.url + "/schaden/" + list['Session'] + "/"  +id).success(function (response) {
             console.info(response);
             if (typeof  response.message != 'undefined') {
                 alert(response.message);

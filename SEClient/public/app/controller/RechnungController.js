@@ -3,7 +3,7 @@
  */
 var app = angular.module("Autovermietung");
 
-app.controller("RechnungsController", function($scope,$http,$location,$window){
+app.controller("RechnungsController", function($scope,$http,$location,$window,global){
 
     //prüft ob User eingelogt ist:
 
@@ -24,7 +24,7 @@ app.controller("RechnungsController", function($scope,$http,$location,$window){
     else {
         //Logout button setzen
         $scope.s = true;
-        $http.get("http://10.60.70.15:3000/rechnung/" + list['Session']).success(function (response) {
+        $http.get(global.url + "/rechnung/" + list['Session']).success(function (response) {
             console.info(response);
             if(typeof  response.message != 'undefined'){
                 alert(response.message);
@@ -44,7 +44,7 @@ app.controller("RechnungsController", function($scope,$http,$location,$window){
             console.info(err);
         });
         $scope.createAllRechnungen = function () {
-            $http.post("http://10.60.70.15:3000/rechnung/" + list['Session']).success(function (response) {
+            $http.post(global.url + "/rechnung/" + list['Session']).success(function (response) {
                 console.info(response);
                 //beim Fehler wird eine Message ausgeben
                 if(typeof  response.message != 'undefined'){
@@ -66,7 +66,7 @@ app.controller("RechnungsController", function($scope,$http,$location,$window){
             });
         }
         $scope.Rechnungenbestaetigen = function (id) {
-            $http.put("http://10.60.70.15:3000/rechnung/zahlung/" + list['Session'] + "/" + id).success(function (response) {
+            $http.put(global.url + "/rechnung/zahlung/" + list['Session'] + "/" + id).success(function (response) {
                 console.info(response);
                 if(typeof  response.message != 'undefined'){
                     alert(response.message);
@@ -78,7 +78,7 @@ app.controller("RechnungsController", function($scope,$http,$location,$window){
                     document.cookie ='Session = 0;expires=Thu, 01 Jan 1970 00:00:01 GMT';
                     $location.url("/session/new");
                 }
-
+                $location.url("/rechnungen");
 
             }).error(function (err) {
                 $scope.error = err;

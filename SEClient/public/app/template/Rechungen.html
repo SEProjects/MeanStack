@@ -24,11 +24,11 @@
                         <th style="color:#808080" ng-if="daten.item[4].$value == 'true'">Zahlung bestätigt</th>
 
 
-                        <th ng-if="daten.item[4].$value == 'false' && daten.item[5].$value == 'true' ">{{daten.item[0].$value;}}</th>
-                        <th ng-if="daten.item[4].$value == 'false' && daten.item[5].$value == 'true' ">{{daten.item[1].$value;}}</th>
-                        <th ng-if="daten.item[4].$value == 'false' && daten.item[5].$value == 'true' ">{{daten.item[2].$value.substring(8,10) +"." + daten.item[2].$value.substring(5,7) + "." +daten.item[2].$value.substring(0,4) }}</th>
-                        <th ng-if="daten.item[4].$value == 'false' && daten.item[5].$value == 'true' ">{{daten.item[3].$value;}}</th>
-                        <th ng-if="daten.item[4].$value == 'false' && daten.item[5].$value == 'true' ">Zahlung prüfen</th>
+                        <th style="color:#ff801b" ng-if="daten.item[4].$value == 'false' && daten.item[5].$value == 'true' ">{{daten.item[0].$value;}}</th>
+                        <th style="color:#ff801b"  ng-if="daten.item[4].$value == 'false' && daten.item[5].$value == 'true' ">{{daten.item[1].$value;}}</th>
+                        <th style="color:#ff801b"  ng-if="daten.item[4].$value == 'false' && daten.item[5].$value == 'true' ">{{daten.item[2].$value.substring(8,10) +"." + daten.item[2].$value.substring(5,7) + "." +daten.item[2].$value.substring(0,4) }}</th>
+                        <th style="color:#ff801b"   ng-if="daten.item[4].$value == 'false' && daten.item[5].$value == 'true' ">{{daten.item[3].$value;}}</th>
+                        <th style="color:#ff801b"  ng-if="daten.item[4].$value == 'false' && daten.item[5].$value == 'true' ">Zahlung prüfen</th>
 
                 <th ng-if="daten.item[5].$value == 'false'">{{daten.item[0].$value;}}</th>
                 <th ng-if="daten.item[5].$value == 'false'">{{daten.item[1].$value;}}</th>
@@ -47,6 +47,8 @@
                 <th ng-if="daten.item[4].$value == 'false' && daten.item[5].$value == 'true' "> <div class="control-group">
                     <input type="submit" class="btn btn-primary" value="bestätigen" ng-click="Rechnungenbestaetigen(daten.item[0].$value)" />
                 </div></th>
+                <th ng-if="daten.item[4].$value == 'true' && daten.item[5].$value == 'true' "> <div class="control-group">
+                    </th>
                 <th ng-if="daten.item[4].$value == 'false' && daten.item[5].$value == 'false' "> <div class="control-group">
                     <a href="#/rechnungen/rabatt/{{daten.item[0].$value}}" class="btn btn-default" >Rabatt</a>
                 </div></th>

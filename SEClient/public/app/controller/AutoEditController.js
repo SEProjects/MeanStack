@@ -3,7 +3,7 @@
  */
 var app = angular.module("Autovermietung");
 
-app.controller("AutoEditController", function($scope,$http,$location,$routeParams){
+app.controller("AutoEditController", function($scope,$http,$location,$routeParams,global){
     //prüft ob User eingelogt ist:
     $scope.auto = {};
     var aa = [];
@@ -25,7 +25,7 @@ app.controller("AutoEditController", function($scope,$http,$location,$routeParam
     else {
         //Logout button setzen
         $scope.s = true;
-        $http.get("http://10.60.70.15:3000/aa/" + list['Session']).success(function (response) {
+        $http.get(global.url + "/aa/" + list['Session']).success(function (response) {
             //beim Fehler wird eine Message ausgeben
             if(typeof  response.message != 'undefined'){
                 alert(response.message);
@@ -46,7 +46,7 @@ app.controller("AutoEditController", function($scope,$http,$location,$routeParam
             $scope.aa = aa;
 
         })
-        $http.get("http://10.60.70.15:3000/autos/" + list['Session'] + "/" + id).success(function (response) {
+        $http.get(global.url + "/autos/" + list['Session'] + "/" + id).success(function (response) {
             //beim Fehler wird eine Message ausgeben
             if(typeof  response.message != 'undefined'){
                 alert(response.message);
@@ -62,7 +62,7 @@ app.controller("AutoEditController", function($scope,$http,$location,$routeParam
         });
 
         $scope.saveAuto = function () {
-            $http.put("http://10.60.70.15:3000/autos/" + list['Session'] + "/" + id, $scope.auto)
+            $http.put(global.url + "/autos/" + list['Session'] + "/" + id, $scope.auto)
                 .success(function (response) {
                     //beim Fehler wird eine Message ausgeben
                     if(typeof  response.message != 'undefined'){
